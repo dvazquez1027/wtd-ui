@@ -1,19 +1,49 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <TodoList v-bind:todos="todoList" @del-todo="deleteTodo" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TodoList from "./components/TodoList.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    TodoList
+  },
+  data: function() {
+    return {
+      todoList: [
+        {
+          id: "1",
+          title: "Mow the lawn",
+          description: "Mow the front and back yards, pull weeds, edge the sidewalk.",
+          completed: false
+        },
+        {
+          id: "2",
+          title: "Do groceries",
+          description:
+            "Go to Target, Wal-Mart and Winn Dixie.",
+          completed: false
+        },
+        {
+          id: "3",
+          title: "Shave",
+          description:
+            "Save so we look nice before doing anything else.",
+            completed: true
+        }
+      ]
+    };
+  },
+  methods: {
+    deleteTodo(id) {
+      this.todoList = this.todoList.filter(todo => todo.id !== id);
+    }
   }
-}
+};
 </script>
 
 <style>
