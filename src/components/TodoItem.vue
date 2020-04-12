@@ -23,7 +23,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .todo-item {
   text-align: left;
   background-color: lightgrey;

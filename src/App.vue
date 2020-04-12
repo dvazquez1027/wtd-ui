@@ -1,18 +1,24 @@
 <template>
   <div id="app">
+    <Header />
+    <AddTodo @add-todo="addTodo" />
     <TodoList v-bind:todos="todoList" @del-todo="deleteTodo" />
   </div>
 </template>
 
 <script>
 import TodoList from "./components/TodoList.vue";
+import Header from "./components/layout/Header.vue";
+import AddTodo from "./components/AddTodo.vue";
 
 export default {
   name: "App",
   components: {
-    TodoList
+    TodoList,
+    Header,
+    AddTodo
   },
-  data: function() {
+  data() {
     return {
       todoList: [
         {
@@ -41,6 +47,9 @@ export default {
   methods: {
     deleteTodo(id) {
       this.todoList = this.todoList.filter(todo => todo.id !== id);
+    },
+    addTodo(todo) {
+      this.todoList.push(todo);
     }
   }
 };
@@ -54,5 +63,12 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.btn {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
 }
 </style>
